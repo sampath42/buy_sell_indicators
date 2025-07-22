@@ -179,10 +179,10 @@ sell_signals = df[sell_condition]
 
 #buy_signals = df[df['Pattern'].str.contains("Bullish Engulfing", na=False)]
 buy_x = buy_signals.index
-buy_y = buy_signals['Low'] - 0.2  # slight offset below candle
+buy_y = buy_signals['Low'] - 0.02  # slight offset below candle
 
 sell_x = sell_signals.index
-sell_y = sell_signals['High'] + 0.2  # offset above candle
+sell_y = sell_signals['High'] + 0.02  # offset above candle
 
 #--------------Plot----------------------
 fig = make_subplots(rows=1, cols=1, shared_xaxes=True,
