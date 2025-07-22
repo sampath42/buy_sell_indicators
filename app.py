@@ -190,7 +190,7 @@ sell_y = sell_signals['High'] + 0.05  # offset above candle
 #--------------Plot----------------------
 fig = make_subplots(rows=1, cols=1, shared_xaxes=True,
                     #row_heights=[0.45, 0.2, 0.2, 0.15],
-                    #vertical_spacing=0.03,
+                    vertical_spacing=0.01,
                     #subplot_titles=("Candlestick", "MACD", "Stochastic Oscillator", "Stoch RSI")
                    )
 
@@ -224,9 +224,10 @@ fig.add_trace(go.Scatter(
 ), row=1, col=1)
 
 # Row 2: MACD
-#fig.add_trace(go.Scatter(x=df.index, y=df['MACD'], line=dict(color='blue'), name='MACD'), row=2, col=1)
-#fig.add_trace(go.Scatter(x=df.index, y=df['Signal'], line=dict(color='orange'), name='Signal'), row=2, col=1)
-#fig.add_trace(go.Bar(x=df.index, y=df['Histogram'], marker_color='gray', name='Histogram'), row=2, col=1)
+if macd:
+    fig.add_trace(go.Scatter(x=df.index, y=df['MACD'], line=dict(color='blue'), name='MACD'), row=2, col=1)
+    fig.add_trace(go.Scatter(x=df.index, y=df['Signal'], line=dict(color='orange'), name='Signal'), row=2, col=1)
+    fig.add_trace(go.Bar(x=df.index, y=df['Histogram'], marker_color='gray', name='Histogram'), row=2, col=1)
 
 # Row 3: Stochastic Oscillator
 #fig.add_trace(go.Scatter(x=df.index, y=df['%K'], line=dict(color='purple'), name='%K'), row=3, col=1)
