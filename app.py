@@ -8,6 +8,9 @@ import mplfinance as mpf
 import matplotlib
 import numpy as np
 
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+
 st.title("Buy Sell Indicators")
 
 # --------------- Pattern Detection Functions ---------------
@@ -182,13 +185,11 @@ sell_x = sell_signals.index
 sell_y = sell_signals['High'] + 0.2  # offset above candle
 
 #--------------Plot----------------------
-from plotly.subplots import make_subplots
-import plotly.graph_objects as go
-
-fig = make_subplots(rows=4, cols=1, shared_xaxes=True,
-                    row_heights=[0.45, 0.2, 0.2, 0.15],
-                    vertical_spacing=0.03,
-                    subplot_titles=("Candlestick", "MACD", "Stochastic Oscillator", "Stoch RSI"))
+fig = make_subplots(rows=1, cols=1, shared_xaxes=True,
+                    #row_heights=[0.45, 0.2, 0.2, 0.15],
+                    #vertical_spacing=0.03,
+                    #subplot_titles=("Candlestick", "MACD", "Stochastic Oscillator", "Stoch RSI")
+                   )
 
 # Row 1: Candlesticks + Bollinger Bands
 fig.add_trace(go.Candlestick(x=df.index, open=df['Open'], high=df['High'],
@@ -197,9 +198,9 @@ fig.add_trace(go.Candlestick(x=df.index, open=df['Open'], high=df['High'],
                                     df['Open']
                             ), 
                               row=1, col=1)
-fig.add_trace(go.Scatter(x=df.index, y=df['MA20'], line=dict(color='blue'), name='MA20'), row=1, col=1)
-fig.add_trace(go.Scatter(x=df.index, y=df['Upper'], line=dict(color='gray'), name='Upper'), row=1, col=1)
-fig.add_trace(go.Scatter(x=df.index, y=df['Lower'], line=dict(color='gray'), name='Lower'), row=1, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=df['MA20'], line=dict(color='blue'), name='MA20'), row=1, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=df['Upper'], line=dict(color='gray'), name='Upper'), row=1, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=df['Lower'], line=dict(color='gray'), name='Lower'), row=1, col=1)
 
 # Buy markers (green upward triangles)
 fig.add_trace(go.Scatter(x=buy_x, y=buy_y, mode='markers',
@@ -220,21 +221,21 @@ fig.add_trace(go.Scatter(
 ), row=1, col=1)
 
 # Row 2: MACD
-fig.add_trace(go.Scatter(x=df.index, y=df['MACD'], line=dict(color='blue'), name='MACD'), row=2, col=1)
-fig.add_trace(go.Scatter(x=df.index, y=df['Signal'], line=dict(color='orange'), name='Signal'), row=2, col=1)
-fig.add_trace(go.Bar(x=df.index, y=df['Histogram'], marker_color='gray', name='Histogram'), row=2, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=df['MACD'], line=dict(color='blue'), name='MACD'), row=2, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=df['Signal'], line=dict(color='orange'), name='Signal'), row=2, col=1)
+#fig.add_trace(go.Bar(x=df.index, y=df['Histogram'], marker_color='gray', name='Histogram'), row=2, col=1)
 
 # Row 3: Stochastic Oscillator
-fig.add_trace(go.Scatter(x=df.index, y=df['%K'], line=dict(color='purple'), name='%K'), row=3, col=1)
-fig.add_trace(go.Scatter(x=df.index, y=df['%D'], line=dict(color='green'), name='%D'), row=3, col=1)
-fig.add_trace(go.Scatter(x=df.index, y=[80]*len(df), line=dict(color='red', dash='dash'), name='Overbought'), row=3, col=1)
-fig.add_trace(go.Scatter(x=df.index, y=[20]*len(df), line=dict(color='blue', dash='dash'), name='Oversold'), row=3, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=df['%K'], line=dict(color='purple'), name='%K'), row=3, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=df['%D'], line=dict(color='green'), name='%D'), row=3, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=[80]*len(df), line=dict(color='red', dash='dash'), name='Overbought'), row=3, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=[20]*len(df), line=dict(color='blue', dash='dash'), name='Oversold'), row=3, col=1)
 
 # Row 4: StochRSI
-fig.add_trace(go.Scatter(x=df.index, y=df['StochRSI_K'], line=dict(color='purple'), name='StochRSI_K'), row=4, col=1)
-fig.add_trace(go.Scatter(x=df.index, y=df['StochRSI_D'], line=dict(color='green'), name='StochRSI_D'), row=4, col=1)
-fig.add_trace(go.Scatter(x=df.index, y=[80]*len(df), line=dict(color='red', dash='dash'), name='Overbought'), row=4, col=1)
-fig.add_trace(go.Scatter(x=df.index, y=[20]*len(df), line=dict(color='blue', dash='dash'), name='Oversold'), row=4, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=df['StochRSI_K'], line=dict(color='purple'), name='StochRSI_K'), row=4, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=df['StochRSI_D'], line=dict(color='green'), name='StochRSI_D'), row=4, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=[80]*len(df), line=dict(color='red', dash='dash'), name='Overbought'), row=4, col=1)
+#fig.add_trace(go.Scatter(x=df.index, y=[20]*len(df), line=dict(color='blue', dash='dash'), name='Oversold'), row=4, col=1)
 
 fig.update_layout(title='NVDA',
                   xaxis_rangeslider_visible=False,
@@ -252,7 +253,9 @@ fig.update_layout(
     margin=dict(l=20, r=20, t=40, b=20)
 )
 
+
 fig.show()
+
 
 #st.plotly_chart(fig)
 st.plotly_chart(fig, use_container_width=True)
