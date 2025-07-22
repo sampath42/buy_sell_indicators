@@ -245,6 +245,13 @@ fig.update_layout(title='NVDA',
                   height=900,
                   xaxis_rangeslider_visible=False)
 
+fig.update_layout(
+    autosize=True,
+    width=None,  # Leave unset to allow container to control width
+    height=1000,  # You can increase this to fill more vertical space
+    margin=dict(l=20, r=20, t=40, b=20)
+)
+
 fig.show()
 
 st.plotly_chart(fig)
