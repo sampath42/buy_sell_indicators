@@ -70,6 +70,9 @@ def classify_three(df, i):
 ticker = st.text_input("Enter Ticker", value="NVDA")
 period = st.text_input("Enter Period", value="30d")
 interval = st.text_input("Enter Interval", value="5m")
+macd = st.checkbox("MACD")
+stochRSI = st.checkbox("StochRSI")
+stochOsc = st.checkbox("StochOsc")
 
 df = yf.download(ticker, period=period, interval=interval)
 df.columns = df.columns.get_level_values(0)
@@ -198,9 +201,9 @@ fig.add_trace(go.Candlestick(x=df.index, open=df['Open'], high=df['High'],
                                     df['Open']
                             ), 
                               row=1, col=1)
-#fig.add_trace(go.Scatter(x=df.index, y=df['MA20'], line=dict(color='blue'), name='MA20'), row=1, col=1)
-#fig.add_trace(go.Scatter(x=df.index, y=df['Upper'], line=dict(color='gray'), name='Upper'), row=1, col=1)
-#fig.add_trace(go.Scatter(x=df.index, y=df['Lower'], line=dict(color='gray'), name='Lower'), row=1, col=1)
+fig.add_trace(go.Scatter(x=df.index, y=df['MA20'], line=dict(color='blue'), name='MA20'), row=1, col=1)
+fig.add_trace(go.Scatter(x=df.index, y=df['Upper'], line=dict(color='gray'), name='Upper'), row=1, col=1)
+fig.add_trace(go.Scatter(x=df.index, y=df['Lower'], line=dict(color='gray'), name='Lower'), row=1, col=1)
 
 # Buy markers (green upward triangles)
 fig.add_trace(go.Scatter(x=buy_x, y=buy_y, mode='markers',
