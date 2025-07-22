@@ -257,5 +257,5 @@ fig.update_layout(
 fig.show()
 
 
-#st.plotly_chart(fig)
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig)
+st.set_page_config(layout="wide")
