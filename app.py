@@ -11,6 +11,8 @@ import numpy as np
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
+import time
+
 st.title("Buy Sell Indicators")
 
 # Optional: display last refresh time
