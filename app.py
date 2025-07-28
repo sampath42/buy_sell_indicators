@@ -249,12 +249,12 @@ fig.add_trace(go.Scatter(
 #fig.add_trace(go.Scatter(x=df.index, y=[80]*len(df), line=dict(color='red', dash='dash'), name='Overbought'), row=4, col=1)
 #fig.add_trace(go.Scatter(x=df.index, y=[20]*len(df), line=dict(color='blue', dash='dash'), name='Oversold'), row=4, col=1)
 
-fig.update_layout(title='NVDA',
+fig.update_layout(title=ticker,
                   xaxis_rangeslider_visible=False,
                   height=1000)
 
 # Layout enhancements
-fig.update_layout(title='NVDA',
+fig.update_layout(title=ticker,
                   height=900,
                   xaxis_rangeslider_visible=False)
 
@@ -265,6 +265,20 @@ fig.update_layout(
     margin=dict(l=20, r=20, t=40, b=20)
 )
 
+fig.update_layout(
+    xaxis=dict(
+        rangeslider_visible=False,
+        rangebreaks=[
+            # Weekends
+            dict(bounds=["sat", "mon"]),
+            # Outside trading hours (for hourly or minute data)
+            dict(bounds=[16, 9.5], pattern="hour")
+        ]
+    ),
+    title=ticker,
+    xaxis_title="Time",
+    yaxis_title="Price"
+)
 
 fig.show()
 
