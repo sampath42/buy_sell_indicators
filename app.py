@@ -13,6 +13,13 @@ import plotly.graph_objects as go
 
 st.title("Buy Sell Indicators")
 
+# Optional: display last refresh time
+st.write(f"Last refreshed at: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+
+# Sleep 60 seconds and rerun
+time.sleep(60)
+st.experimental_rerun()
+
 # --------------- Pattern Detection Functions ---------------
 
 def classify_single(o, h, l, c):
