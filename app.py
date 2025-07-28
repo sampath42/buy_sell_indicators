@@ -79,9 +79,9 @@ def classify_three(df, i):
 ticker = st.text_input("Enter Ticker", value="NVDA")
 period = st.text_input("Enter Period", value="30d")
 interval = st.text_input("Enter Interval", value="5m")
-macd = st.checkbox("MACD")
-stochRSI = st.checkbox("StochRSI")
-stochOsc = st.checkbox("StochOsc")
+#macd = st.checkbox("MACD")
+#stochRSI = st.checkbox("StochRSI")
+#stochOsc = st.checkbox("StochOsc")
 
 df = yf.download(ticker, period=period, interval=interval)
 df.columns = df.columns.get_level_values(0)
